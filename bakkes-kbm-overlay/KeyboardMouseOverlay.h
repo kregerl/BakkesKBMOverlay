@@ -5,6 +5,9 @@
 #include "bakkesmod/plugin/pluginwindow.h"
 #include "imgui/imgui.h"
 
+#define WINDOW_WIDTH 768
+#define WINDOW_HEIGHT 384
+
 #define BUTTON_SIZE 50
 #define BUTTON_MARGIN 5
 
@@ -12,15 +15,19 @@
 #define COLOR_BLACK ImColor(0, 0, 0)
 #define COLOR_GRAY ImColor(156, 156, 156)
 
+#define SCALE "kbmscale"
+#define TRANSPARENCY "kbmtransparency"
+
 class KeyboardMouseOverlay : public BakkesMod::Plugin::BakkesModPlugin, public BakkesMod::Plugin::PluginWindow {
 
 public:
-	virtual void onLoad() override;
-	virtual void onUnload() override;
+	void onLoad() override;
+
+	void onUnload() override;
 
 	void onTick(std::string eventName);
 
-	virtual void Render() override;
+	void Render() override;
 
 	virtual std::string GetMenuName() override;
 
@@ -49,6 +56,10 @@ private:
 
 	ImColor getColor(bool isEnabled);
 
+	void writeCfg();
+
+	int scaledButtonSize() { return BUTTON_SIZE * m_scale; }
+
 private:
 	struct Input {
 		int index;
@@ -56,6 +67,9 @@ private:
 		std::string name;
 	};
 	
-	bool renderOverlay = false;
-	std::map<std::string, Input> inputMap;
+	bool m_renderOverlay = false;
+	float m_scale = 1.0f;
+	float m_transparency = 1.0f;
+	std::string m_cfgPath = "./bakkesmod/cfg/kbmoverlay.cfg";
+	std::map<std::string, Input> m_inputMap;
 };
