@@ -40,12 +40,12 @@ void KeyboardMouseOverlay::onLoad() {
 	m_inputMap["MiddleMouseButton"] = { 0, false, "" };
 	m_inputMap["RightMouseButton"] = { 0, false, "" };
 
-	cvarManager->registerCvar(SCALE, "1.0").addOnValueChanged([this](std::string previous, CVarWrapper now) {
+	cvarManager->registerCvar(SCALE, "0.75").addOnValueChanged([this](std::string previous, CVarWrapper now) {
 		this->m_scale = now.getFloatValue();
 		writeCfg();
 	});
 
-	cvarManager->registerCvar(TRANSPARENCY, "0.75").addOnValueChanged([this](std::string previous, CVarWrapper now) {
+	cvarManager->registerCvar(TRANSPARENCY, "0").addOnValueChanged([this](std::string previous, CVarWrapper now) {
 		this->m_transparency = now.getFloatValue();
 		writeCfg();
 	});
