@@ -44,8 +44,8 @@ void KeyboardMouseOverlay::onLoad() {
 		this->m_scale = now.getFloatValue();
 		writeCfg();
 	});
-
-	cvarManager->registerCvar(TRANSPARENCY, "0.75").addOnValueChanged([this](std::string previous, CVarWrapper now) {
+	
+	cvarManager->registerCvar(TRANSPARENCY, "0").addOnValueChanged([this](std::string previous, CVarWrapper now) {
 		this->m_transparency = now.getFloatValue();
 		writeCfg();
 	});
@@ -196,7 +196,7 @@ void KeyboardMouseOverlay::renderTabRow(ImDrawList* drawlist, ImVec2 screenPos) 
 	drawlist->AddRectFilled(ImVec2(screenPos.x, tabYPos), ImVec2(screenPos.x + width, tabYPos + scaledButtonSize()), getColor(m_inputMap.at("Tab").pressed), 0, ImDrawCornerFlags_None);
 	drawlist->AddText(ImVec2(screenPos.x + (width * 0.5f) - (textSize.x * 0.5f), tabYPos + (scaledButtonSize() * 0.5f) - (textSize.y * 0.5f)), COLOR_WHITE, "Tab");
 
-	keyPressHelper(drawlist, { "Q", "W", "E", "R", "T" }, ImVec2(screenPos.x + (scaledButtonSize() * 2) + BUTTON_MARGIN, tabYPos));
+	keyPressHelper(drawlist, { "A", "Z", "E", "R", "T" }, ImVec2(screenPos.x + (scaledButtonSize() * 2) + BUTTON_MARGIN, tabYPos));
 }
 
 void KeyboardMouseOverlay::renderCapsRow(ImDrawList* drawlist, ImVec2 screenPos) {
@@ -206,7 +206,7 @@ void KeyboardMouseOverlay::renderCapsRow(ImDrawList* drawlist, ImVec2 screenPos)
 	drawlist->AddRectFilled(ImVec2(screenPos.x, capsYPos), ImVec2(screenPos.x + capsWidth, capsYPos + scaledButtonSize()), getColor(m_inputMap.at("CapsLock").pressed), 0, ImDrawCornerFlags_None);
 	drawlist->AddText(ImVec2(screenPos.x + (capsWidth * 0.5f) - (textSize.x * 0.5f), capsYPos + (scaledButtonSize() * 0.5f) - (textSize.y * 0.5f)), COLOR_WHITE, "Caps");
 
-	keyPressHelper(drawlist, { "A", "S", "D", "F", "G" }, ImVec2(screenPos.x + capsWidth + BUTTON_MARGIN, capsYPos));
+	keyPressHelper(drawlist, { "Q", "S", "D", "F", "G" }, ImVec2(screenPos.x + capsWidth + BUTTON_MARGIN, capsYPos));
 }
 
 void KeyboardMouseOverlay::renderShiftRow(ImDrawList* drawlist, ImVec2 screenPos) {
@@ -216,7 +216,7 @@ void KeyboardMouseOverlay::renderShiftRow(ImDrawList* drawlist, ImVec2 screenPos
 	drawlist->AddRectFilled(ImVec2(screenPos.x, shiftYPos), ImVec2(screenPos.x + shiftWidth, shiftYPos + scaledButtonSize()), getColor(m_inputMap.at("LeftShift").pressed), 0, ImDrawCornerFlags_None);
 	drawlist->AddText(ImVec2(screenPos.x + (shiftWidth * 0.5f) - (textSize.x * 0.5f), shiftYPos + (scaledButtonSize() * 0.5f) - (textSize.x * 0.5f)), COLOR_WHITE, "Shift");
 
-	keyPressHelper(drawlist, { "Z", "X", "C", "V" }, ImVec2(screenPos.x + shiftWidth + BUTTON_MARGIN, shiftYPos));
+	keyPressHelper(drawlist, { "W", "X", "C", "V" }, ImVec2(screenPos.x + shiftWidth + BUTTON_MARGIN, shiftYPos));
 }
 
 void KeyboardMouseOverlay::renderCtrlRow(ImDrawList* drawlist, ImVec2 screenPos) {
